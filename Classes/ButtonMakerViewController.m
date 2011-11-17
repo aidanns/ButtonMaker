@@ -58,6 +58,8 @@
     [matteButtonStyleStepper setStepValue:1];
     [matteButtonBarStyleStepper setValue:0];
     [matteButtonStyleStepper setValue:0];
+    [matteButtonStyleStepper setWraps:YES];
+    [matteButtonBarStyleStepper setWraps:YES];
     [matteButtonBarStyleStepper setHidden:TRUE];
     [matteButtonStyleStepper setHidden:TRUE];
     [matteButtonBarStyleLabel setHidden:TRUE];
