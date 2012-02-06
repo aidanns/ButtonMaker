@@ -111,8 +111,21 @@
 	[self updateButton];
 }
 
-- (void) saveImageToFile: (NSString *) filePath {
-	UIGraphicsBeginImageContext(theButton.frame.size);
+- (void) saveImageToFile: (NSString *) filePath isRetina:(BOOL)isRetina
+{
+	if (isRetina)
+	{
+		if (UIGraphicsBeginImageContextWithOptions == NULL)
+		{
+			return;
+		}
+		UIGraphicsBeginImageContextWithOptions(theButton.frame.size, NO, 2.0);
+	}
+	else 
+	{
+		UIGraphicsBeginImageContext(theButton.frame.size);
+	}
+	
 	CGContextRef theContext = UIGraphicsGetCurrentContext();
 	[theButton.layer renderInContext:theContext];
 	
@@ -140,16 +153,18 @@
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	
 	// the path to write file
-	NSString *buttonFile = [documentsDirectory stringByAppendingPathComponent:@"button.png"];
-	NSString *buttonHighlightFile = [documentsDirectory stringByAppendingPathComponent:@"button-highlight.png"]; 
-	
-	[self saveImageToFile: buttonFile];
-	
-	
+	NSString *buttonFile = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%@", [nameField text], @"button.png"]];
+	NSString *buttonHighlightFile = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%@", [nameField text], @"button_highlight.png"]]; 
+	NSString *buttonRetinaFile = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%@", [nameField text], @"button@2x.png"]];
+	NSString *buttonRetinaHighlightFile = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%@", [nameField text], @"button-highlight@2x.png"]]; 
+
+	[self saveImageToFile: buttonFile isRetina:NO];
+	[self saveImageToFile: buttonRetinaFile isRetina:YES];
 	
 	[theButton setHighlighted:YES];
 	
-	[self saveImageToFile: buttonHighlightFile];
+	[self saveImageToFile: buttonHighlightFile isRetina:NO];
+	[self saveImageToFile: buttonRetinaHighlightFile isRetina:YES];
 
 	[theButton setHighlighted:NO];
 	NSString *msg = [NSString stringWithFormat:@"Wrote files to %@", documentsDirectory];
