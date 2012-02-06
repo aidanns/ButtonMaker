@@ -153,11 +153,11 @@
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	
 	// the path to write file
-	NSString *buttonFile = [documentsDirectory stringByAppendingPathComponent:@"button.png"];
-	NSString *buttonHighlightFile = [documentsDirectory stringByAppendingPathComponent:@"button-highlight.png"]; 
-	NSString *buttonRetinaFile = [documentsDirectory stringByAppendingPathComponent:@"button@2x.png"];
-	NSString *buttonRetinaHighlightFile = [documentsDirectory stringByAppendingPathComponent:@"button-highlight@2x.png"]; 
-	
+	NSString *buttonFile = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%@", [nameField text], @"button.png"]];
+	NSString *buttonHighlightFile = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%@", [nameField text], @"button_highlight.png"]]; 
+	NSString *buttonRetinaFile = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%@", [nameField text], @"button@2x.png"]];
+	NSString *buttonRetinaHighlightFile = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%@", [nameField text], @"button-highlight@2x.png"]]; 
+
 	[self saveImageToFile: buttonFile isRetina:NO];
 	[self saveImageToFile: buttonRetinaFile isRetina:YES];
 	
