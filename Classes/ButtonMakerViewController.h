@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define kOFFSET_FOR_KEYBOARD 60.0
+
 @interface ButtonMakerViewController : UIViewController <UITextFieldDelegate>{
 	UISlider *redSlider;
 	UISlider *greenSlider;
@@ -48,6 +50,7 @@
     int matteButtonStyle;
     
     UITextField * nameField;
+    UITextField * textLabelField;
 }
 
 @property(nonatomic, retain) IBOutlet UISlider *redSlider;
@@ -74,6 +77,7 @@
 @property(nonatomic, retain) IBOutlet UIButton * subH;
 
 @property(nonatomic, retain) IBOutlet UITextField * nameField;
+@property(nonatomic, retain) IBOutlet UITextField * textLabelField;
 
 @property(nonatomic, retain) IBOutlet UISegmentedControl * matteGlossy;
 
@@ -95,6 +99,8 @@
 
 -(IBAction)barStyleStepped:(id)sender;
 -(IBAction)styleStepped:(id)sender;
+
+-(IBAction) textLabelChanged:(id)sender;
 
 @end
 

@@ -610,7 +610,7 @@
 						<string key="NSFrame">{{38, 213}, {249, 31}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="237469788"/>
+						<reference key="NSNextKeyView" ref="645684881"/>
 						<string key="NSReuseIdentifierKey">_NS:294</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -631,15 +631,43 @@
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="1007637389">
 							<int key="type">1</int>
 							<double key="pointSize">12</double>
 						</object>
-						<object class="NSFont" key="IBUIFont">
+						<object class="NSFont" key="IBUIFont" id="237154753">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">12</double>
 							<int key="NSfFlags">16</int>
 						</object>
+					</object>
+					<object class="IBUITextField" id="645684881">
+						<reference key="NSNextResponder" ref="774585933"/>
+						<int key="NSvFlags">290</int>
+						<string key="NSFrame">{{38, 252}, {249, 31}}</string>
+						<reference key="NSSuperview" ref="774585933"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="559802143"/>
+						<string key="NSReuseIdentifierKey">_NS:294</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUIText"/>
+						<int key="IBUIBorderStyle">3</int>
+						<string key="IBUIPlaceholder">Text label</string>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MAA</bytes>
+							<reference key="NSCustomColorSpace" ref="762520499"/>
+						</object>
+						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
+						<float key="IBUIMinimumFontSize">17</float>
+						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						</object>
+						<reference key="IBUIFontDescription" ref="1007637389"/>
+						<reference key="IBUIFont" ref="237154753"/>
 					</object>
 					<object class="IBUISegmentedControl" id="214022298">
 						<reference key="NSNextResponder" ref="774585933"/>
@@ -685,7 +713,7 @@
 						<string key="NSFrame">{{19, 368}, {43, 21}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="559802143"/>
+						<reference key="NSNextKeyView" ref="1010841688"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -769,7 +797,7 @@
 						<string key="NSFrame">{{19, 345}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1010841688"/>
+						<reference key="NSNextKeyView" ref="237469788"/>
 						<string key="NSReuseIdentifierKey">_NS:992</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -1048,6 +1076,14 @@
 					<int key="connectionID">94</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">textLabelField</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="645684881"/>
+					</object>
+					<int key="connectionID">97</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">colorSliderChanged:</string>
 						<reference key="source" ref="781458746"/>
@@ -1226,6 +1262,23 @@
 					</object>
 					<int key="connectionID">92</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="645684881"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">96</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">textLabelChanged:</string>
+						<reference key="source" ref="645684881"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">18</int>
+					</object>
+					<int key="connectionID">98</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1288,6 +1341,7 @@
 							<reference ref="1016750128"/>
 							<reference ref="237469788"/>
 							<reference ref="559802143"/>
+							<reference ref="645684881"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1461,6 +1515,11 @@
 						<reference key="object" ref="270463999"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">95</int>
+						<reference key="object" ref="645684881"/>
+						<reference key="parent" ref="774585933"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1506,12 +1565,14 @@
 					<string>87.IBPluginDependency</string>
 					<string>88.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
+					<string>95.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ButtonMakerViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1562,7 +1623,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">94</int>
+			<int key="maxID">98</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1582,9 +1643,11 @@
 							<string>sizeSlideChanged:</string>
 							<string>styleStepped:</string>
 							<string>subtractButtonPressed:</string>
+							<string>textLabelChanged:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1607,6 +1670,7 @@
 							<string>sizeSlideChanged:</string>
 							<string>styleStepped:</string>
 							<string>subtractButtonPressed:</string>
+							<string>textLabelChanged:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1642,6 +1706,10 @@
 								<string key="name">subtractButtonPressed:</string>
 								<string key="candidateClassName">id</string>
 							</object>
+							<object class="IBActionInfo">
+								<string key="name">textLabelChanged:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
@@ -1674,6 +1742,7 @@
 							<string>subH</string>
 							<string>subR</string>
 							<string>subW</string>
+							<string>textLabelField</string>
 							<string>widthLabel</string>
 							<string>widthSlider</string>
 						</object>
@@ -1705,6 +1774,7 @@
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
+							<string>UITextField</string>
 							<string>UILabel</string>
 							<string>UISlider</string>
 						</object>
@@ -1739,6 +1809,7 @@
 							<string>subH</string>
 							<string>subR</string>
 							<string>subW</string>
+							<string>textLabelField</string>
 							<string>widthLabel</string>
 							<string>widthSlider</string>
 						</object>
@@ -1847,6 +1918,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">subW</string>
 								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">textLabelField</string>
+								<string key="candidateClassName">UITextField</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">widthLabel</string>

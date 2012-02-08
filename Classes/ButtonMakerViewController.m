@@ -22,7 +22,7 @@
 @synthesize heightLabel;
 @synthesize widthLabel;
 
-@synthesize addB, addG, addH, addR, addW, subB, subG, subH, subR, subW, nameField, matteGlossy;
+@synthesize addB, addG, addH, addR, addW, subB, subG, subH, subR, subW, nameField, textLabelField, matteGlossy;
 @synthesize matteButtonStyleLabel, matteButtonStyleStepper, matteButtonBarStyleLabel, matteButtonStyleNameLabel;
 @synthesize matteButtonBarStyleStepper, matteButtonBarStyleNameLabel;
 
@@ -108,7 +108,7 @@
   CGFloat width = roundf(widthSlider.value);
   CGFloat height = roundf(heightSlider.value);
   CGFloat x = nameField.frame.origin.x+nameField.frame.size.width/2 - width/2;
-  CGFloat y = ((nameField.center.y+matteGlossy.center.y)-height)/2;
+  CGFloat y = ((textLabelField.center.y+matteButtonStyleStepper.center.y)-height)/2;
   CGFloat red = roundf(redSlider.value)/255.0;
   CGFloat green = roundf(greenSlider.value)/255.0;
   CGFloat blue = roundf(blueSlider.value)/255.0;
@@ -129,7 +129,13 @@
         [theButton setValue:[NSNumber numberWithInt:matteButtonBarStyle] forKey:@"barStyle"];
         [theButton setValue:[NSNumber numberWithInt:matteButtonStyle] forKey:@"style"];
     }
+  [theButton setTitle:textLabelField.text forState:UIControlStateNormal];
+
   [self.view addSubview:theButton];
+}
+
+-(IBAction) textLabelChanged:(id)sender {
+    [self updateButton];
 }
 
 -(IBAction) colorSliderChanged:(id)sender {
@@ -363,6 +369,79 @@
         }
     }
     [self updateButton];
+}
+
+// http://stackoverflow.com/questions/1126726/how-to-make-a-uitextfield-move-up-when-keyboard-is-present
+-(void)textFieldDidBeginEditing:(id)sender
+{
+    if ([sender isEqual:nameField] || [sender isEqual:textLabelField])
+    {
+        //move the main view, so that the keyboard does not hide it.
+        if  (self.view.frame.origin.y >= 0)
+        {
+            [self setViewMovedUp:YES];
+        }
+    }
+}
+
+//method to move the view up/down whenever the keyboard is shown/dismissed
+-(void)setViewMovedUp:(BOOL)movedUp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5]; // if you want to slide up the view
+    
+    CGRect rect = self.view.frame;
+    if (movedUp)
+    {
+        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard 
+        // 2. increase the size of the view so that the area behind the keyboard is covered up.
+        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
+        rect.size.height += kOFFSET_FOR_KEYBOARD;
+    }
+    else
+    {
+        // revert back to the normal state.
+        rect.origin.y += kOFFSET_FOR_KEYBOARD;
+        rect.size.height -= kOFFSET_FOR_KEYBOARD;
+    }
+    self.view.frame = rect;
+    
+    [UIView commitAnimations];
+}
+
+
+- (void)keyboardWillShow:(NSNotification *)notif
+{
+    //keyboard will be shown now. depending for which textfield is active, move up or move down the view appropriately
+    
+    if (([nameField isFirstResponder] || [textLabelField isFirstResponder]) && self.view.frame.origin.y >= 0)
+    {
+        [self setViewMovedUp:YES];
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification *)notif
+{
+    if (([nameField isFirstResponder] || [textLabelField isFirstResponder]) && self.view.frame.origin.y < 0)
+    {
+        [self setViewMovedUp:NO];
+    }    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) 
+                                                 name:UIKeyboardWillShowNotification object:self.view.window]; 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) 
+                                                 name:UIKeyboardWillHideNotification object:self.view.window]; 
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil]; 
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil]; 
 }
 
 @end
