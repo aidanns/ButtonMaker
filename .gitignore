@@ -1,3 +1,6 @@
 DerivedData
 ButtonMaker.xcodeproj/project.xcworkspace
 ButtonMaker.xcodeproj/xcuserdata
+build
+xcuserdata
+.DS_Store
